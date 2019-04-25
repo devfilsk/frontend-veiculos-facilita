@@ -3,7 +3,7 @@ import {Button, FormGroup, Label, Input, FormFeedback, FormText, Row, Col} from 
 import NumberFormat from 'react-number-format'
 import api from "../../services/api";
 import Toastr from "../../helpers/toastr";
-import { Redirect } from 'react-router-dom';
+
 
 const NovoVeiculo = (props) => {
 
