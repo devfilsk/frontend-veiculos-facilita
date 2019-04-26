@@ -29,7 +29,7 @@ const Header = () => {
                 <Nav className="ml-auto" navbar>
                     <NavItem>
                         {/*<NavLink href={'/veiculos'} >Veículos</NavLink>*/}
-                        <Link className='nav-link' to={'/veiculos'}>Veículos</Link>
+                        <Link className='nav-link' to={'/'}>Veículos</Link>
                     </NavItem>
                     <NavItem>
                         <Link className='nav-link' to="/novo-veiculo">Novo Veículo</Link>

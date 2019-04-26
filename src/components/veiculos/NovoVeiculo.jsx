@@ -22,18 +22,26 @@ const NovoVeiculo = (props) => {
 
     // carregar o contexto do componente
     useEffect(() => {
-        getMarcas();
 
-        getCores();
+        loadEdit()
+    }, []);
 
-    }, [])
+
+    const loadEdit = () => {
+        if(props.veiculo){
+            console.log(props.veiculo.modelo)
+        }else{
+            getMarcas();
+
+            getCores();
+        }
+    }
 
     //Marcas do banco de dados para popular o select
     const getMarcas = () => {
         api.get('/api/app/marcas')
             .then(res => res)
             .then(res => {
-                console.log("Marcas: ", res);
                 if (res.status === 200) {
                     setMarcas(res.data)
                 }
@@ -45,7 +53,6 @@ const NovoVeiculo = (props) => {
         api.get('/api/app/cores')
             .then(res => res)
             .then(res => {
-                console.log("Cores: ", res);
                 if (res.status === 200) {
                     setCores(res.data);
                 }
@@ -145,7 +152,7 @@ const NovoVeiculo = (props) => {
                 console.log("Resposta da API: ", res)
                 if(res.status === 200) {
                     Toastr('success', 'Veículo cadastrado com sucesso');
-                    props.history.push("/veiculos");
+                    props.history.push("/");
                 }
             })
     };
@@ -165,9 +172,6 @@ const NovoVeiculo = (props) => {
 
                         <FormFeedback>Minimo de 4 caractéres</FormFeedback>
                     </FormGroup>
-                    {
-                        console.log(modelo)
-                    }
                 </Col>
                 <Col sm={6} md={4}>
                     <FormGroup>

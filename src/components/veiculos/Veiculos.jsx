@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {Table, Button} from 'reactstrap'
+import {Table, Button, Container} from 'reactstrap'
 import api from "../../services/api";
 import Toastr from "../../helpers/toastr";
+import {Link} from 'react-router-dom';
 
 
 const Veiculos = () => {
@@ -24,9 +25,9 @@ const Veiculos = () => {
             .then(res => res)
             .then(res => {
                 console.log(res)
-                if(res.data){
+                if (res.data) {
                     veiculos.map((valor, i) => {
-                        if(valor.id === id){
+                        if (valor.id === id) {
                             let array = veiculos.slice(0);
                             array.splice(i, 1);
                             setVeiculos(array);
@@ -39,7 +40,8 @@ const Veiculos = () => {
 
     return (
         <div>
-            <Table striped>
+            <h3 className='display-auto-auto'>Veículos Cadastrados</h3>
+            <Table dark>
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -64,15 +66,19 @@ const Veiculos = () => {
                             <td>{veiculo.ano_fabricacao}</td>
                             <td>{veiculo.ano_modelo}</td>
                             <td>
-                                <Button outline color="primary">
-                                    Editar
-                                </Button>{' '}
+                                <Link to={`/veiculos/${veiculo.id}`}>
+                                    <Button outline color="primary">
+                                        Editar
+                                    </Button>{' '}
+                                </Link>
                                 <Button outline color="danger" onClick={() => deleteVeiculo(veiculo.id)}>
-                                   Excluir
+                                    Excluir
                                 </Button>{' '}
-                                <Button outline color="success">
-                                   Vender
-                                </Button>{' '}
+                                <Link to={`/vender/${veiculo.id}`}>
+                                    <Button outline color="success">
+                                        Vender
+                                    </Button>{' '}
+                                </Link>
                             </td>
                         </tr>
                     ))
