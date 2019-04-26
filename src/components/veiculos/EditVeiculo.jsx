@@ -18,7 +18,7 @@ const EditVeiculo = (props) => {
         status: "",
         valor: ""
     };
-    const [veiculo, setVeiculo] = useState(initState);
+    const [veiculo, setVeiculo] = useState(null);
 
     useEffect(() => {
         getVeiculo();
@@ -28,14 +28,20 @@ const EditVeiculo = (props) => {
         api.get(`/api/app/veiculos/${props.match.params.id}`)
             .then(res => res)
             .then(res => {
-                console.log(res);
+                console.log('rees',res);
                 setVeiculo(res.data)
             });
     };
 
     return (
         <div>
-            <NovoVeiculo veiculo={veiculo}/>
+            {
+                veiculo !== null ?
+                    (
+                        <NovoVeiculo veiculo={veiculo}/>
+                    ) :
+                    ''
+            }
         </div>
     )
 };

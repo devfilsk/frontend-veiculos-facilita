@@ -22,18 +22,27 @@ const NovoVeiculo = (props) => {
 
     // carregar o contexto do componente
     useEffect(() => {
+        getMarcas();
+
+        getCores();
 
         loadEdit()
     }, []);
 
 
     const loadEdit = () => {
-        if(props.veiculo){
-            console.log(props.veiculo.modelo)
-        }else{
-            getMarcas();
+        if(props){
+            setModelo(props.veiculo.modelo);
+            setValor(props.veiculo.valor);
+            setChassi(props.veiculo.chassi);
+            setCodigoFipe(props.veiculo.codigo_fipe)
+            setAnoModelo(props.veiculo.ano_modelo)
+            setAnoFabricacao(props.veiculo.ano_fabricacao)
+            setMarca(props.veiculo.marca.marca)
+            setCor(props.veiculo.cor.cor)
 
-            getCores();
+        }else{
+
         }
     }
 
