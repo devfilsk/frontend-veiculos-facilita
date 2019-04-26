@@ -13,7 +13,6 @@ const Veiculos = () => {
         api.get('/api/app/veiculos')
             .then(res => res)
             .then(res => {
-                console.log("Resposta: ", res)
                 if (res.status === 200) {
                     setVeiculos(res.data)
                 }
@@ -24,7 +23,6 @@ const Veiculos = () => {
         api.delete(`/api/app/veiculos/${id}`)
             .then(res => res)
             .then(res => {
-                console.log(res)
                 if (res.data) {
                     veiculos.map((valor, i) => {
                         if (valor.id === id) {

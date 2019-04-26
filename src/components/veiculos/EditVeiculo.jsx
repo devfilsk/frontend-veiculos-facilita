@@ -48,9 +48,6 @@ const EditVeiculo = (props) => {
     return (
         <div>
             {
-                console.log("a", veiculo)
-            }
-            {
                 veiculo.modelo !== '' ?
                     (
                         <FormVeiculo save={save} veiculo={veiculo}/>

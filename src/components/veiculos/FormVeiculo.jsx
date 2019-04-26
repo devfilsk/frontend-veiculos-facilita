@@ -22,9 +22,7 @@ const FormVeiculo = (props) => {
 
     // carregar o contexto do componente
     useEffect(() => {
-        if(props.veiculo){
-            console.log("Valor",props.veiculo)
-        }
+
         getMarcas();
 
         getCores();
