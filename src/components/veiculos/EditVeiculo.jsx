@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import api from "../../services/api";
-import NovoVeiculo from "./NovoVeiculo";
+import Toastr from "../../helpers/toastr";
+import FormVeiculo from "./FormVeiculo";
 
 const EditVeiculo = (props) => {
     let initState = {
@@ -18,7 +19,7 @@ const EditVeiculo = (props) => {
         status: "",
         valor: ""
     };
-    const [veiculo, setVeiculo] = useState(null);
+    const [veiculo, setVeiculo] = useState(initState);
 
     useEffect(() => {
         getVeiculo();
@@ -28,17 +29,31 @@ const EditVeiculo = (props) => {
         api.get(`/api/app/veiculos/${props.match.params.id}`)
             .then(res => res)
             .then(res => {
-                console.log('rees',res);
                 setVeiculo(res.data)
             });
+    };
+
+    const save = (dados) => {
+
+        api.put(`/api/app/veiculos/${props.match.params.id}`, dados)
+            .then(res => res)
+            .then(res => {
+                if(res.status === 200) {
+                    Toastr('success', 'Veículo alterado com sucesso');
+                    props.history.push("/");
+                }
+            })
     };
 
     return (
         <div>
             {
-                veiculo !== null ?
+                console.log("a", veiculo)
+            }
+            {
+                veiculo.modelo !== '' ?
                     (
-                        <NovoVeiculo veiculo={veiculo}/>
+                        <FormVeiculo save={save} veiculo={veiculo}/>
                     ) :
                     ''
             }
